@@ -21,7 +21,7 @@ Perform network traffic analysis on the provided PCAP to discover the contents o
 *   **Linux CLI:** `unzip` to extract the recovered archive.
 
 ## 📂 Repository Contents
-*   `challenge.pcapng` - The packet capture from the incident (Add your PCAP file here).
+*   `challenge` - Try Hack Me - https://tryhackme.com/room/hfb1stolenmount.
 *   `writeup.md` - A step-by-step technical guide on how the challenge was solved.
 *   `README.md` - This file.
 

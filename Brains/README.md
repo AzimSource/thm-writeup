@@ -1,9 +1,9 @@
 ````md
 # TryHackMe - Brains Writeup 🧠🔍
 
-![Category](https://img.shields.io/badge/Category-Web_Exploitation-red)
-![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
-![Tools](https://img.shields.io/badge/Tools-Nmap%20%7C%20Metasploit%20%7C%20Splunk-lightgrey)
+![Category](https://img.shields.io/badge/Category-web)
+![Difficulty](https://img.shields.io/badge/Difficulty-easy)
+![Tools](https://img.shields.io/badge/Tools-Metasploit%20%7C%20splunk%20%7C%20python3-lightgrey)
 
 ---
 

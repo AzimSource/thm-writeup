@@ -1,7 +1,7 @@
 # CTF Challenge: Unsecured NFS Traffic Analysis 🕵️‍♂️🔍
 
 ![Category](https://img.shields.io/badge/Category-Network_Forensics-blue)
-![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
+![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 ![Tools](https://img.shields.io/badge/Tools-Wireshark%20%7C%20Hashcat%20%7C%20unzip-lightgrey)
 
 ## 📖 Scenario Overview

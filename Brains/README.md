@@ -1,5 +1,3 @@
-Got it — you want your README to match that clean **CTF-style format**. Here’s your **Brains write-up converted into that exact style** 👇
-
 ---
 
 # 🧠 CTF Challenge: Brains – TeamCity Exploitation & Log Analysis 🔥

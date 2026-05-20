@@ -28,7 +28,7 @@ Perform static analysis and alert investigation to:
 
 ## 📂 Repository Contents
 * `challenge` - TryHackMe Room - https://tryhackme.com/room/shadowtrace
-* `writeup.md` - Full step-by-step walkthrough and investigation process
+* `Shadow Trace.pdf` - Full step-by-step walkthrough and investigation process
 * `README.md` - This file
 
 ## 🚀 Solution Summary
@@ -59,7 +59,7 @@ Perform static analysis and alert investigation to:
    - Recovered malicious download URLs
    - Identified suspicious downloaded file names
 
-For the full detailed walkthrough, please see the [Write-up](writeup.md).
+For the full detailed walkthrough, please see the [Write-up](TryHackMe-ShadowTrace.pdf).
 
 ---
 

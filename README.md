@@ -1,4 +1,4 @@
-# 🧠 TryHackMe Write-Ups Repository
+# 🧠 TryHackMe Write-Ups SAL1 Repository
 
 ![Platform](https://img.shields.io/badge/Platform-TryHackMe-red)
 ![Focus](https://img.shields.io/badge/Focus-Cybersecurity-blue)

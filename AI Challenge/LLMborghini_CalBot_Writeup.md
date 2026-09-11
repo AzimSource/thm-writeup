@@ -381,5 +381,5 @@ The safest design ensures that unauthorized sensitive information never reaches 
 ## Final Result
 
 ```text
-Singapore Weekly Revenue: $873
+Singapore Weekly Revenue: $873,600
 ```
